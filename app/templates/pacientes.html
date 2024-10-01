@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Avaliações - Consultório Odontológico</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #0077cc;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        footer {
+            background-color: #00aaff;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            border-top: 5px solid #0077cc;
+        }
+
+        .testimonial {
+            border: 1px solid #0077cc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #e7f7ff;
+        }
+
+        .form-group {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consultório Odontológico</h1>
+        <h2>Avaliações dos Pacientes</h2>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            <h3>Comentários dos Pacientes</h3>
+            <div id="testimonials">
+                <!-- Comentários iniciais -->
+                <div class="testimonial">
+                    <p><strong>João Silva:</strong> "A melhor clínica que já visitei! Atendimento excepcional!"</p>
+                </div>
+                <div class="testimonial">
+                    <p><strong>Maria Oliveira:</strong> "Fui muito bem atendida e a equipe é super atenciosa!"</p>
+                </div>
+                <div class="testimonial">
+                    <p><strong>Carlos Santos:</strong> "Ambiente agradável e profissionais competentes!"</p>
+                </div>
+                <div class="testimonial">
+                    <p><strong>Fernanda Lima:</strong> "Fiquei encantada com a atenção e cuidado durante o tratamento!"</p>
+                </div>
+                <div class="testimonial">
+                    <p><strong>Roberto Costa:</strong> "Excelentes profissionais, sempre atenciosos e pacientes!"</p>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Deixe sua Avaliação</h3>
+            <form id="testimonial-form">
+                <div class="form-group">
+                    <label for="patient-name">Seu Nome</label>
+                    <input type="text" class="form-control" id="patient-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="patient-comment">Sua Avaliação</label>
+                    <textarea class="form-control" id="patient-comment" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Avaliação</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Consultório Odontológico. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('testimonial-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('patient-name').value;
+            const comment = document.getElementById('patient-comment').value;
+
+            const newTestimonial = document.createElement('div');
+            newTestimonial.className = 'testimonial';
+            newTestimonial.innerHTML = `<p><strong>${name}:</strong> "${comment}"</p>`;
+
+            document.getElementById('testimonials').appendChild(newTestimonial);
+
+            // Limpar o formulário após o envio
+            this.reset();
+        });
+    </script>
+</body>
+</html>

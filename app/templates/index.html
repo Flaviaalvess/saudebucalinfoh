@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultório Odontológico</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilo básico */
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff; /* Fundo azul claro */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #00aaff; /* Azul delicado */
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #0077cc; /* Borda azul mais escuro */
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        header h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .welcome-title {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .welcome-title h2 {
+            color: #0077cc;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-title p {
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .welcome-title .btn {
+            margin-top: 20px;
+            background-color: #0077cc;
+            color: #ffffff;
+            border: none;
+        }
+
+        .welcome-title .btn:hover {
+            background-color: #005999;
+        }
+
+        footer {
+            background-color: #00aaff;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            border-top: 5px solid #0077cc;
+        }
+    </style>
+</head>
+<body>
+    <header class="container-fluid">
+        <h1>Consultório Odontológico</h1>
+        <h2>Saúde Bucal</h2>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href= \pacientes\>Pacientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href= \profissionais\>Profissionais</a></li>
+                    <li class="nav-item"><a class="nav-link" href= \consulta\>Consulta</a></li>
+                    <li class="nav-item"><a class="nav-link" href= \cuidados\>Cuidados</a></li>
+                    <li class="nav-item"><a class="nav-link" href= \cuidado_especial\>Cuidados Especiais</a></li>
+                    <li cl ass="nav-item"><a class="nav-link" href=\orcamento\>Orçamento</a></li>
+                    <li class="nav-item"><a class="nav-link" href= \agendamento\>Agendamento</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'horario' %}">Horário de Atendimento</a></li>
+                    <li class="nav-item"><a class="nav-link" href= \contato\>Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="welcome-title">
+            <h2>OLÁ, BEM-VINDO(A) AO NOSSO CONSULTÓRIO ODONTOLÓGICO!</h2>
+            <p class="lead">Estamos aqui para cuidar do seu sorriso com carinho e profissionalismo.</p>
+            <p class="lead">Explore nossos serviços e descubra como podemos ajudar você a alcançar uma saúde bucal excelente.</p>
+            <a href="#servicos" class="btn btn-primary">Conheça nossos serviços</a>
+        </div>
+    </main>
+
+    <footer class="container-fluid">
+        <p>&copy; 2024 Consultório Odontológico. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cuidados Especiais - Consultório Odontológico</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #0077cc;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        footer {
+            background-color: #00aaff;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            border-top: 5px solid #0077cc;
+        }
+
+        .special-care-list {
+            margin-top: 10px;
+        }
+
+        .special-care-item {
+            padding: 10px;
+            border: 1px solid #0077cc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .special-care-item:hover {
+            background-color: #e0f7fa;
+        }
+
+        .special-care-price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+
+        .special-care-description {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consultório Odontológico</h1>
+        <h2>Cuidados Especiais</h2>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            <h3>Cuidados Disponíveis para Crianças e Pessoas com Necessidades Especiais</h3>
+            <div class="special-care-list" id="special-care-list">
+                <div class="special-care-item" onclick="selectSpecialCare('Odontopediatria', 200)">
+                    Odontopediatria - <span class="special-care-price">R$ 200,00</span>
+                    <div class="special-care-description">Cuidados odontológicos adaptados para crianças, focando no conforto e segurança.</div>
+                </div>
+                <div class="special-care-item" onclick="selectSpecialCare('Sedação Consciente', 300)">
+                    Sedação Consciente - <span class="special-care-price">R$ 300,00</span>
+                    <div class="special-care-description">Técnica que ajuda a reduzir a ansiedade em pacientes especiais durante os procedimentos.</div>
+                </div>
+                <div class="special-care-item" onclick="selectSpecialCare('Acompanhamento Odontológico', 150)">
+                    Acompanhamento Odontológico - <span class="special-care-price">R$ 150,00</span>
+                    <div class="special-care-description">Consulta regular para monitorar a saúde bucal de pacientes com necessidades especiais.</div>
+                </div>
+                <div class="special-care-item" onclick="selectSpecialCare('Tratamento de Hipersensibilidade', 250)">
+                    Tratamento de Hipersensibilidade - <span class="special-care-price">R$ 250,00</span>
+                    <div class="special-care-description">Tratamentos específicos para aliviar a sensibilidade dental em crianças e pacientes especiais.</div>
+                </div>
+                <div class="special-care-item" onclick="selectSpecialCare('Clareamento Seguro', 400)">
+                    Clareamento Seguro - <span class="special-care-price">R$ 400,00</span>
+                    <div class="special-care-description">Métodos seguros de clareamento dental adequados para pacientes jovens e sensíveis.</div>
+                </div>
+                <div class="special-care-item" onclick="selectSpecialCare('Atendimento a Pacientes com Síndrome de Down', 250)">
+                    Atendimento a Pacientes com Síndrome de Down - <span class="special-care-price">R$ 250,00</span>
+                    <div class="special-care-description">Cuidados personalizados que consideram as necessidades específicas dos pacientes com síndrome de Down.</div>
+                </div>
+                <div class="special-care-item" onclick="selectSpecialCare('Atendimento a Pacientes Autistas', 250)">
+                    Atendimento a Pacientes Autistas - <span class="special-care-price">R$ 250,00</span>
+                    <div class="special-care-description">Abordagem cuidadosa e adaptada para proporcionar conforto e segurança a pacientes autistas.</div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Agendar Cuidado Especial</h3>
+            <form id="special-care-form" style="display:none;">
+                <div class="form-group">
+                    <label for="selected-special-care">Cuidado Selecionado</label>
+                    <input type="text" class="form-control" id="selected-special-care" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-date">Data do Cuidado</label>
+                    <input type="date" class="form-control" id="appointment-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-time">Horário do Cuidado</label>
+                    <input type="time" class="form-control" id="appointment-time" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Agendar</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Consultório Odontológico. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Função para selecionar cuidado especial e mostrar valor
+        function selectSpecialCare(care, price) {
+            document.getElementById('selected-special-care').value = `${care} - R$ ${price.toFixed(2)}`;
+            document.getElementById('special-care-form').style.display = 'block';
+        }
+
+        // Evento para agendar cuidado especial
+        document.getElementById('special-care-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const careDetails = document.getElementById('selected-special-care').value;
+            const date = document.getElementById('appointment-date').value;
+            const time = document.getElementById('appointment-time').value;
+            alert('Cuidado ' + careDetails + ' agendado para ' + date + ' às ' + time);
+            this.reset();
+            this.style.display = 'none'; // Oculta o formulário após agendar
+        });
+    </script>
+</body>
+</html>

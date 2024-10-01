@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pacientes - Consultório Odontológico</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #0077cc;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        footer {
+            background-color: #00aaff;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            border-top: 5px solid #0077cc;
+        }
+
+        .success-message {
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consultório Odontológico</h1>
+        <h2>Agendamento de Consultas</h2>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            <h3>Agendar Consulta</h3>
+            <form id="appointment-form">
+                <div class="form-group">
+                    <label for="patient-name">Nome do Paciente</label>
+                    <input type="text" class="form-control" id="patient-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="patient-cpf">CPF</label>
+                    <input type="text" class="form-control" id="patient-cpf" required>
+                </div>
+                <div class="form-group">
+                    <label for="patient-email">Email</label>
+                    <input type="email" class="form-control" id="patient-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="patient-phone">Telefone</label>
+                    <input type="text" class="form-control" id="patient-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-date">Data da Consulta</label>
+                    <input type="date" class="form-control" id="appointment-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-time">Horário da Consulta</label>
+                    <select class="form-control" id="appointment-time" required>
+                        <option value="">Selecione um horário</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Agendar</button>
+            </form>
+            <div class="success-message" id="success-message" style="display:none;"></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Consultório Odontológico. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Lista simulada de pacientes
+        const pacientes = [
+            { id: 1, nome: "João Silva", cpf: "123.456.789-00", email: "joao@example.com", telefone: "(11) 91234-5678" },
+            { id: 2, nome: "Maria Oliveira", cpf: "987.654.321-00", email: "maria@example.com", telefone: "(21) 92345-6789" },
+            { id: 3, nome: "Carlos Santos", cpf: "456.123.789-00", email: "carlos@example.com", telefone: "(31) 93456-7890" },
+            // Adicione mais pacientes conforme necessário
+        ];
+
+        // Lista simulada de horários ocupados
+        const horariosOcupados = {
+            "2024-10-02": ["09:00", "10:00"],
+            "2024-10-03": ["14:00"],
+            // Adicione mais datas conforme necessário
+        };
+
+        // Horários disponíveis
+        const todosOsHorarios = [
+            "09:00",
+            "10:00",
+            "11:00",
+            "14:00",
+            "15:00",
+            "16:00"
+        ];
+
+        // Atualiza horários disponíveis quando a data é selecionada
+        document.getElementById('appointment-date').addEventListener('change', function() {
+            const dataSelecionada = this.value;
+            const horariosSelect = document.getElementById('appointment-time');
+            
+            // Limpa opções anteriores
+            horariosSelect.innerHTML = '<option value="">Selecione um horário</option>';
+            
+            // Filtra horários disponíveis
+            const horariosDisponiveis = todosOsHorarios.filter(horario => {
+                return !horariosOcupados[dataSelecionada] || !horariosOcupados[dataSelecionada].includes(horario);
+            });
+
+            // Adiciona horários disponíveis ao select
+            horariosDisponiveis.forEach(horario => {
+                const option = document.createElement('option');
+                option.value = horario;
+                option.textContent = horario;
+                horariosSelect.appendChild(option);
+            });
+        });
+
+        // Evento para agendar consulta
+        document.getElementById('appointment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('patient-name').value;
+            const cpf = document.getElementById('patient-cpf').value;
+            const email = document.getElementById('patient-email').value;
+            const phone = document.getElementById('patient-phone').value;
+            const date = document.getElementById('appointment-date').value;
+            const time = document.getElementById('appointment-time').value;
+            const successMessage = document.getElementById('success-message');
+            successMessage.textContent = `Sua consulta foi agendada com sucesso! Te esperamos no dia ${date} às ${time}.`;
+            successMessage.style.display = 'block'; // Exibe a mensagem
+            this.reset(); // Reseta o formulário
+        });
+    </script>
+</body>
+</html>

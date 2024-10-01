@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Horário de Atendimento - Consultório Odontológico</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #0077cc;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+
+        footer {
+            background-color: #00aaff;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            border-top: 5px solid #0077cc;
+        }
+
+        .table td, .table th {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consultório Odontológico</h1>
+        <h2>Horário de Atendimento</h2>
+    </header>
+
+    <main>
+        <div class="container">
+            <h3>Horário de Funcionamento</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Dia da Semana</th>
+                        <th>Horário de Abertura</th>
+                        <th>Horário de Fechamento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Segunda-feira</td>
+                        <td>08:00</td>
+                        <td>18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Terça-feira</td>
+                        <td>08:00</td>
+                        <td>18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Quarta-feira</td>
+                        <td>08:00</td>
+                        <td>18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Quinta-feira</td>
+                        <td>08:00</td>
+                        <td>18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Sexta-feira</td>
+                        <td>08:00</td>
+                        <td>18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Sabado</td>
+                        <td>09:00</td>
+                        <td>13:00</td>
+                    </tr>
+                    <tr>
+                        <td>Domingo</td>
+                        <td colspan="2">Fechado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Consultório Odontológico. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

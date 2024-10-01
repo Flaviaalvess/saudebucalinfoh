@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Escolher Cuidados - Consultório Odontológico</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: #00aaff;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 5px solid #0077cc;
+        }
+
+        main {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        footer {
+            background-color: #00aaff;
+            color: #ffffff;
+            text-align: center;
+            padding: 15px 0;
+            border-top: 5px solid #0077cc;
+        }
+
+        .care-list {
+            margin-top: 10px;
+        }
+
+        .care-item {
+            padding: 10px;
+            border: 1px solid #0077cc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .care-item:hover {
+            background-color: #e0f7fa;
+        }
+
+        .care-price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+
+        .care-description {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .alert {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Consultório Odontológico</h1>
+        <h2>Escolher Cuidados</h2>
+    </header>
+
+    <main>
+        <div class="container mt-5">
+            <h3>Cuidados Disponíveis</h3>
+            <div class="care-list" id="care-list">
+                <div class="care-item" onclick="selectCare('Limpeza Dentária', 150)">
+                    Limpeza Dentária - <span class="care-price">R$ 150,00</span>
+                    <div class="care-description">Remove placa bacteriana e tártaro, mantendo seus dentes saudáveis.</div>
+                </div>
+                <div class="care-item" onclick="selectCare('Aplicação de Flúor', 100)">
+                    Aplicação de Flúor - <span class="care-price">R$ 100,00</span>
+                    <div class="care-description">Fortalece o esmalte dental e previne cáries.</div>
+                </div>
+                <div class="care-item" onclick="selectCare('Tratamento de Cáries', 300)">
+                    Tratamento de Cáries - <span class="care-price">R$ 300,00</span>
+                    <div class="care-description">Remove a cárie e restaura o dente danificado.</div>
+                </div>
+                <div class="care-item" onclick="selectCare('Restauração Dentária', 400)">
+                    Restauração Dentária - <span class="care-price">R$ 400,00</span>
+                    <div class="care-description">Restaura a forma e função do dente afetado.</div>
+                </div>
+                <div class="care-item" onclick="selectCare('Clareamento Dental', 500)">
+                    Clareamento Dental - <span class="care-price">R$ 500,00</span>
+                    <div class="care-description">Branqueia os dentes, removendo manchas e escurecimento.</div>
+                </div>
+            </div>
+
+            <h3 class="mt-5">Agendar Cuidado</h3>
+            <form id="care-form" style="display:none;">
+                <div class="form-group">
+                    <label for="selected-care">Cuidado Selecionado</label>
+                    <input type="text" class="form-control" id="selected-care" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="appointment-date">Data do Cuidado</label>
+                    <input type="date" class="form-control" id="appointment-date" required>
+                </div>
+                <div class="form-group" id="time-container" style="display:none;">
+                    <label for="appointment-time">Horário do Cuidado</label>
+                    <select class="form-control" id="appointment-time" required>
+                        <option value="">Selecione um horário</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Agendar</button>
+            </form>
+
+            <div id="success-message" class="alert alert-success mt-3">Seu horário foi marcado com sucesso!</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Consultório Odontológico. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Função para selecionar cuidado e mostrar valor
+        function selectCare(care, price) {
+            document.getElementById('selected-care').value = `${care} - R$ ${price.toFixed(2)}`;
+            document.getElementById('care-form').style.display = 'block';
+        }
+
+        // Função para preencher horários disponíveis
+        function populateTimeSlots() {
+            const timeSelect = document.getElementById('appointment-time');
+            timeSelect.innerHTML = ''; // Limpa horários atuais
+
+            const availableTimes = [
+                '09:00',
+                '10:00',
+                '11:00',
+                '14:00',
+                '15:00',
+                '16:00',
+                '17:00'
+            ];
+
+            availableTimes.forEach(time => {
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = time;
+                timeSelect.appendChild(option);
+            });
+
+            document.getElementById('time-container').style.display = 'block';
+        }
+
+        // Evento para agendar cuidado
+        document.getElementById('appointment-date').addEventListener('change', function() {
+            populateTimeSlots();
+        });
+
+        document.getElementById('care-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const careDetails = document.getElementById('selected-care').value;
+            const date = document.getElementById('appointment-date').value;
+            const time = document.getElementById('appointment-time').value;
+            alert('Cuidado ' + careDetails + ' agendado para a data ' + date + ' às ' + time);
+            document.getElementById('success-message').style.display = 'block'; // Mostra a mensagem de sucesso
+            this.reset();
+            this.style.display = 'none'; // Oculta o formulário após agendar
+            document.getElementById('time-container').style.display = 'none'; // Oculta o campo de horários
+        });
+    </script>
+</body>
+</html>
